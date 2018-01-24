@@ -10,7 +10,7 @@
 	    <th>Reassignable</th>
 	    <th>Redeclarable</th>
 	    <th>Mutable</th>
-	   <th><a href="#tdz_sample">Temporal Dead Zone</a></th>
+	    <th>Temporal Dead Zone</th>
 	  </tr>
 	  <tr>
 	    <th>const</th>
