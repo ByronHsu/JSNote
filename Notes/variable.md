@@ -71,3 +71,6 @@
 		// From here on, accessing `x` is perfectly fine!
 		console.log(x);
 		```
+	
+#### reference
+https://github.com/mbeaudru/modern-js-cheatsheet?utm_source=mybridge&utm_medium=email&utm_campaign=read_more
