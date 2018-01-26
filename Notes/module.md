@@ -110,6 +110,11 @@
     - ES6 creates a live read-only view of the modules we import(有點不懂)
       - 大概是說commonjs在export時會copy一份出來所以變數不會是reference,想對直接對變數操作就無法
       - 但nativeJs卻可以把每個變數各自export出來,就可以直接改到那個變數
-      
+
+- 為什麼要打包
+	- 減少load一大堆script的時間
+	- 只需要包入有用到的code
+
+	 
 #### Reference
 https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc
