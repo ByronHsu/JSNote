@@ -78,7 +78,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-  	// 醜化程式碼
+    // 醜化程式碼
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
@@ -102,6 +102,52 @@ module.exports = {
   }
 }
 ```
+### Advance
+- Babel
 
+```sh
+# 兩者有依賴關係
+npm install --save-dev babel-loader babel-core
+```
+
+```js
+// webpack.config.dev.js 和 webpack.config.prod.js
+module: {
+  loaders: [{
+    test: /\.css$/,
+    loaders: ['style', 'css']
+  }, {
+    test: /\.js$/,
+    loaders: ['babel'],
+    // 別忘了這行 他可能會讓你build時間變得很長
+    include: path.join(__dirname, 'src')
+  }]
+}
+```
+- Linter
+
+```sh
+npm install -g eslint
+npm install --save-dev eslint eslint-config-airbnb
+# optional
+npm install --save-dev babel-eslint eslint-plugin-babel
+```
+
+```js
+// .eslintrc
+{
+  "extends": "airbnb/base",
+  "parser": "babel-eslint",
+  "rules": {
+    "comma-dangle": 0,
+    "no-console": 0,
+    "babel/generator-star-spacing": 1,
+    "babel/new-cap": 1,
+  },
+  "plugins": [
+    "babel"
+  ]
+}
+```
 #### Reference
 https://neighborhood999.github.io/webpack-tutorial-gitbook/Part1/
