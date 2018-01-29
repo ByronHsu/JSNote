@@ -5,7 +5,7 @@
 
 看他用了哪些套件
 
-```json
+```js
   "dependencies": {
     // Promise based HTTP client for the browser and node.js
     "axios": "^0.17.1",
@@ -88,6 +88,8 @@
 
 ### How to test?
 ### How to convert to npm package?
+### Issue
+當hook建立完成後再使用``gitmoji -c``會有問題
 ### Q&A
 What does ``#!/usr/bin/env node`` means?
 
