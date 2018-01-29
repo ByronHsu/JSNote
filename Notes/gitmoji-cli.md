@@ -1,4 +1,4 @@
-# gitmoji-cli
+# [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli)
 > 練習看懂一個小專案
 
 ### package.json
