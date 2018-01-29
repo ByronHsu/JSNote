@@ -88,8 +88,19 @@
 
 ### How to test?
 ### How to convert to npm package?
+
+```sh
+npm publish
+```
+
 ### Issue
-當hook建立完成後再使用``gitmoji -c``會有問題
+1. 當hook建立完成後再使用``gitmoji -c``會有問題
+	- 原因: 建立hook後只要打``git commit ...``就會進入那個interactive頁面. 如果在建立hook後呼叫``gitmoji -c``他會先進入interactive介面讓使用者選好answer, 然後執行``git commit -m 'blablabla'``, 但執行時又會call``bin/gitmoji``去執行``gitmoji --hook ...``, 所以等於是在執行一``bin/gitmoji``中又執行了``bin/gitmoji``, 會導致程式當掉
+	- 解決: 比較好的方法是讓他在執行``git commit -m 'blablabla'``時, 可以暫時忽略掉hook
+2. 當hook建立完後, 有時候``.git/COMMIT_EDITMSG``會是空的
+	- 原因: **可能**是因為``writeFile``強制覆寫了``.git/COMMIT_EDITMSG``中的內容(但其實default也都是comment message, 所以覆寫應該沒差), 會導致有時候在輸入完``git commit``後, 裡面卻是空的, 保險的做法是使用``appendFile``直接接下``.git/COMMIT_EDITMSG``, 本端測試完後暫時沒有問題
+	- 問作者: 為什麼hook裡面沒有git add . gitmoji -c 卻有
+
 ### Q&A
 What does ``#!/usr/bin/env node`` means?
 
