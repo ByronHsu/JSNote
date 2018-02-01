@@ -116,3 +116,8 @@ exec < /dev/tty
 gitmoji --hook $1
 ```
 
+npm gloabl
+
+```sh
+ /usr/local/lib/node_modules
+```
