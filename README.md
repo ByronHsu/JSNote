@@ -8,6 +8,8 @@
 	- [ES6](./Notes/ES6.md)
 
 ## 常用套件
+- React
+	- [react](./Notes/react.md)
 -  打包工具
 	- [Webpack](./Notes/webpack.md)
 -  編譯工具
@@ -18,3 +20,5 @@
 	- [gitmoji-cli](./Notes/gitmoji-cli.md)
 - stack-cli
 	- [stack-cli](./Notes/stack-cli.md)
+- kap
+	- [kap](./Notes/kap.md)
