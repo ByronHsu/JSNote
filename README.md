@@ -12,5 +12,6 @@
 	- [react](./pkg/react.md)
 - Bundle
 	- [Webpack](./pkg/webpack.md)
+	- [Gulp](./pkg/gulp.md)
 - Compile
 	- [Babel](./pkg/babel.md)
