@@ -1,5 +1,5 @@
 # JSNote
-> Try EveryThing with Javascript - CTLin
+> Try EveryThing with Javascript
 
 ## Javascript
 - notion
