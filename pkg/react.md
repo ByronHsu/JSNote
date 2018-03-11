@@ -139,3 +139,40 @@ var b = React.createElement(
 		
 **圖示**
 <p align="center"> <img src="./lifecycle.png" width="400"> </p>
+
+#### react UI
+
+- 靜態UI, no-js-animation: styled-component
+- throw-away js-animation: css-animation
+- complex js-animation: react-motion
+
+#### Conditional Rendering
+
+```jsx
+// 1. Rendering with &&
+{subtitle && (
+  <h2 style={styles.subtitle}>{subtitle}</h2>
+)}
+// 2. Rendering with ternary ?
+{subtitle ? (
+  <h2 style={styles.subtitle}>{subtitle}</h2>
+) : (
+  <h3 style={styles.empty}>No subtitle</h3>
+)}
+// 3. Rendering with if/else
+if (error) {
+  content = 'Error'
+} else if (loading) {
+  content = (
+    <h3 style={styles.empty}>Loading...</h3>
+  )
+}
+// 4. IIFE
+``` 
+
+#### Refs and the DOM
+React components have a special ref prop. You can pass a callback function as the ref, which will **get called with the component instance after the initial render**. You can save the reference for use within React lifecycle methods.
+
+```jsx
+ref={(ref) => this.containerNode = ref}
+```
