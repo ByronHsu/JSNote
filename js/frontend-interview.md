@@ -308,7 +308,9 @@
 6. 原型、原型链、继承如何实现? 
 - 構造函數, 原型, 實例化示意圖
 <img src="media/原型鏈.png" />
-- 原型鏈: **子的prototype為父的instance**
+- 原型鏈: 
+- **子的prototype為父的instance**
+
 ```js
 function Person () {
     this.name = "person";
