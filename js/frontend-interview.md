@@ -17,8 +17,8 @@
       2. example
       ```js
       var a = new Array(); 
-      alert(a instanceof Array);  //true
-      alert(a instanceof Object);  //true
+      alert(a instanceof Array);  /*true*/
+      alert(a instanceof Object);  /*true*/
       ```
 
 4. 如何理解闭包？
@@ -30,12 +30,8 @@
 5. 什么是跨域？跨域请求资源的方法有哪些？
 
    1. 什么是跨域？
-      由于浏览器同源策略，凡是发送请求url的协议、域名、端口三者之间任意一与当前页面地址不同即为跨域。存在跨域的情况：
-      - 网络协议不同，如http协议访问https协议。
-      - 端口不同，如80端口访问8080端口。
-      - 域名不同，如 qianduanblog.com 访问 baidu.com。
-      - 子域名不同，如 abc.qianduanblog.com 访问 def.qianduanblog.com。
-      - 域名和域名对应ip,如www.a.com访问20.205.28.90.
+      <img src="media/跨域解釋.png"/>
+      由于浏览器同源策略，凡是发送请求url的协议、域名、端口三者之间任意一与当前页面地址不同即为跨域。
    2. 跨域请求资源的方法：
       1. proxy
 
@@ -231,7 +227,7 @@
 ## 阿里巴巴
 
 1. React優勢
-- 有很多周邊套件可使用
+- 有很多周邊套件可使用
 - 高效, 不必直接操作dom
 - 優雅, 資料流好管理
 2. diff 算法的理解
@@ -256,3 +252,74 @@
    - 特点是随着屏幕的改变，页面的布局没有发生大的变化，可以进行适配调整(%)，这个正好与自适应布局相补。
 - 响应式布局
    - 这个就好理解了，意思就是分别为不同的屏幕设计的布局方式，可以理解成自适应布局和流程布局的结合。
+5. 跨域的方法:自己实现 JSONP，如何设计?为什么要跨域?为什么 JS 会对跨域做出限制?
+- 實現+設計
+   - JSONP 由两部分组成：回调函数和数据。回调函数是当响应到来时应该在页面中调用的函数。回调函数的名字一般是在请求中指定的。而数据就是传入回调函数中的 JSON 数据。
+   1. 动态创建``<script>``标签，设置其src，回调函数在src中设置：
+      ```js
+      var script = document.createElement("script");
+      script.src = "https://api.douban.com/v2/book/search?q=javascript&count=1&callback=handleResponse";
+      document.body.insertBefore(script, document.body.firstChild);
+      ```
+   2. 在页面中，返回的JSON作为参数传入回调函数中，我们通过回调函数来来操作数据。
+      ```js
+         function handleResponse(response){
+            /*对response数据进行操作代码*/
+         }
+      ```
+   3. 了解了JSONP的基本使用方法，我们在实现上面通过ajax调用豆瓣接口的需求，实现代码如下：
+      ```js
+         oBtn.onclick = function() {
+            /*1. 的代碼*/ 
+         };
+      ```
+- 為什麼要跨域
+   - 獲得其他網頁的資料
+- 為什麼限制
+   - 在同源策略下，在某个服务器下的页面是无法获取到该服务器以外的数据的。
+6. 原型、原型链、继承如何实现?
+- 構造函數, 原型, 實例化示意圖
+<img src="media/原型鏈.png" />
+- 原型鏈: **子的prototype為父的instance**
+```js
+function Person () {
+    this.name = "person";
+}
+Person.prototype.getPersonName = function () {
+    return this.name;
+};
+function Student () {
+    this.studentname = "student";
+}
+// 继承了Person
+Student.prototype = new Person();
+Student.prototype.getStudentName = function () {
+    return this.name;
+};
+var stu = new Student();
+```
+7. session 和 cookies 的区别?
+- session: 儲存在後端, 有一個unique的sid
+- cookies: 儲存在前端, 可以拿來實現session機制, 存放sid在其中
+8. 如何自己实现一个 promise?<br>
+**難** 
+https://www.cnblogs.com/huansky/p/6064402.html
+
+8. js的基本类型有哪些？引用类型有哪些？
+- 基本类型
+   - Number,String,Boolean,Null,undefined
+   - 存放的是基本类型数据的实际值
+- 引用类型
+   - Object,Array,Date,RegExp,Function
+   - 保存对它的引用，即指针
+9. null 和 undefined 的区别
+- null
+   - null表示"没有对象"，即该处不应该有值
+   - 作为函数的参数，表示该函数的参数不是对象
+   - 作为对象原型链的终点
+- undefined
+   - undefined表示"缺少值"，就是此处应该有一个值，但是还没有定义
+   - 变量被声明了，但没有赋值时，就等于undefined。
+   - 调用函数时，应该提供的参数没有提供，该参数等于undefined。
+   - 对象没有赋值的属性，该属性的值为undefined。
+   - 函数没有返回值时，默认返回undefined。
