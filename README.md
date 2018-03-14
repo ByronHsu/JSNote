@@ -6,7 +6,7 @@
 	- [Variable](./js/variable.md)
 	- [Module](./js/module.md)
 	- [ES6](./js/ES6.md)
-	- [interview](./js/frontend-interview.md)
+	- [Interview](./js/frontend-interview.md)
 ## Package
 - React
 	- [react](./pkg/react.md)

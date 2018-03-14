@@ -222,8 +222,36 @@
 - 行内元素不会独占一行,相邻的行内元素会排列在同一行里,直到一行排不下,才会换行,其宽度随元素的内容而变化;margin-top/bottom、padding-top/bottom不可设；
 
 25. 清除浮动的几种方式，各自的优缺点
-- **不會, 查**
-
+- float
+   - 讓元素脫離正常流, 漂浮在上
+   - divA浮動且上個元素也浮動, A會跟在上個元素之後
+   - divA浮動但上個元素非浮動, A頂部會和上個元素底部對齊
+- clear
+   - 清除浮動, 打破橫向排列
+   - **这个规则只能影响使用清除的元素本身，不能影响其他元素。**
+- 清除浮動
+```html
+<div class="box-wrapper">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box" style="clear:both;"></div>
+</div>
+```
+- ref
+   - https://www.cnblogs.com/acorn/p/5249089.html
+26. 試解釋position屬性
+- static
+   - position的默认值，一般不设置position属性时，会按照正常的文档流进行排列
+- relative
+   - 原本的空间仍然保留
+   - 如果不设置relative属性，位置按照正常的文档流，它应该处于某个位置。
+   - 設為relative后，将根据top，right，bottom，left的值按照它理应所在的位置进行偏移，relative的“相对的”意思也正体现于此
+- absolute
+   - 不占有原本的空间
+   - 父有定位, 從padding左上
+   - 父沒定位, 從body
+- fixed
+   - 以浏览器的可视窗口进行定位
 ## 阿里巴巴
 
 1. React優勢
@@ -277,7 +305,7 @@
    - 獲得其他網頁的資料
 - 為什麼限制
    - 在同源策略下，在某个服务器下的页面是无法获取到该服务器以外的数据的。
-6. 原型、原型链、继承如何实现?
+6. 原型、原型链、继承如何实现? 
 - 構造函數, 原型, 實例化示意圖
 <img src="media/原型鏈.png" />
 - 原型鏈: **子的prototype為父的instance**
@@ -301,18 +329,19 @@ var stu = new Student();
 7. session 和 cookies 的区别?
 - session: 儲存在後端, 有一個unique的sid
 - cookies: 儲存在前端, 可以拿來實現session機制, 存放sid在其中
+
 8. 如何自己实现一个 promise?<br>
 **難** 
 https://www.cnblogs.com/huansky/p/6064402.html
 
-8. js的基本类型有哪些？引用类型有哪些？
+9. js的基本类型有哪些？引用类型有哪些？
 - 基本类型
    - Number,String,Boolean,Null,undefined
    - 存放的是基本类型数据的实际值
 - 引用类型
    - Object,Array,Date,RegExp,Function
    - 保存对它的引用，即指针
-9. null 和 undefined 的区别
+10. null 和 undefined 的区别
 - null
    - null表示"没有对象"，即该处不应该有值
    - 作为函数的参数，表示该函数的参数不是对象
@@ -323,3 +352,24 @@ https://www.cnblogs.com/huansky/p/6064402.html
    - 调用函数时，应该提供的参数没有提供，该参数等于undefined。
    - 对象没有赋值的属性，该属性的值为undefined。
    - 函数没有返回值时，默认返回undefined。
+
+11. 哪个是存在堆 哪一个是存在栈上面的?
+- 栈(stack)
+   - 存放一些基本类型的变量和对象的引用
+   - 在棧中創建一個3 被a, b引用
+   ```js
+   var a=3;
+   var b=3;
+   ```
+
+- 堆(heap)
+   - 用于复杂数据类型（引用类型）分配空间，例如数组对象、object对象
+   - 当创建数组时，就会在堆内存创建一个数组对象，并且在栈内存中创建一个对数组的引用。
+   - newArray、oArray为复合数据类型（引用类型），他们的引用变量存放在栈中，**指向**于存放在堆中的实际对象
+   ```js
+   var fruit_1="apple";
+   var fruit_2="orange";
+   var fruit_3="banana";
+   var oArray=[fruit_1,fruit_2,fruit_3];
+   var newArray=oArray;
+   ```
