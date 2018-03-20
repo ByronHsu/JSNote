@@ -309,25 +309,25 @@
 - 構造函數, 原型, 實例化示意圖
 <img src="media/原型鏈.png" />
 - 原型鏈: 
-- **子的prototype為父的instance**
+   - 子的prototype為父的instance
 
-```js
-function Person () {
-    this.name = "person";
-}
-Person.prototype.getPersonName = function () {
-    return this.name;
-};
-function Student () {
-    this.studentname = "student";
-}
-// 继承了Person
-Student.prototype = new Person();
-Student.prototype.getStudentName = function () {
-    return this.name;
-};
-var stu = new Student();
-```
+   ```js
+   function Person () {
+      this.name = "person";
+   }
+   Person.prototype.getPersonName = function () {
+      return this.name;
+   };
+   function Student () {
+      this.studentname = "student";
+   }
+   // 继承了Person
+   Student.prototype = new Person();
+   Student.prototype.getStudentName = function () {
+      return this.name;
+   };
+   var stu = new Student();
+   ```
 7. session 和 cookies 的区别?
 - session: 儲存在後端, 有一個unique的sid
 - cookies: 儲存在前端, 可以拿來實現session機制, 存放sid在其中
@@ -375,3 +375,60 @@ https://www.cnblogs.com/huansky/p/6064402.html
    var oArray=[fruit_1,fruit_2,fruit_3];
    var newArray=oArray;
    ```
+
+12. 网络 url 输入到输出怎么做?
+      1. DNS(域名系统，Domain Name System)解析
+      2. TCP连接
+      3. 发送HTTP请求
+      4. 服务器处理请求并返回HTTP报文
+      5. 浏览器解析渲染页面
+      6. 连接结束
+13. TCP三次握手
+      1. client send SYN
+      2. server send ACK SYN
+      3. client send ACK 
+
+## 騰訊
+1. 什麼是MVC?
+
+<img src="./media/MVC.png" width="300"/>
+
+- The Model handles interaction with the database
+- The View handles how things are represented to the User
+- The Controller takes data to and from the Database and the User, interacts with and organises the various functions of our Application
+
+2. 前后端分离的缺点优点?怎么做?
+- 优点
+   - 前端负责前端页面编写、展示，调用接口，后端负责写接口，各司其职，互不影响
+   - 目录清晰、后期维护性强；
+   - 加快前后端开发速度
+   - 可使用Vue等比较优秀的框架，提高开发速度，加快网站速度
+
+- 缺点
+   - 后端无法测试接口，前端需把接口出现的问题告诉后端，需多增加沟通
+   - 后端可控前端降低
+
+3. SocketIO 的解决点?什么情况下用到
+- 原理: Websocket
+   - 只要建立一次握手, server就會在資料變動時主動回應給前端(一般而言, 要先有req才有res)
+   - 跟http一樣, 是一種協議
+
+4. 网络的模式从地到高有多少层?分别是什么?
+<img src="media/7layer.png">
+- 第7層 應用層
+   - 應用層（Application Layer）提供為應用軟體而設的介面，以設定與另一應用軟體之間的通訊。例如: HTTP，HTTPS，FTP，TELNET，SSH，SMTP，POP3等。
+- 第6層 表現層
+   - 表現層（Presentation Layer）把資料轉換為能與接收者的系統格式相容並適合傳輸的格式。
+- 第5層 會議層
+   - 會議層（Session Layer）負責在資料傳輸中設定和維護電腦網路中兩台電腦之間的通訊連接。
+- 第4層 傳輸層
+   - 傳輸層（Transport Layer）把傳輸表頭（TH）加至資料以形成資料包。傳輸表頭包含了所使用的協定等傳送資訊。例如:傳輸控制協定（TCP）等。
+- 第3層 網路層
+   - 網路層（Network Layer）決定資料的路徑選擇和轉寄，將網路表頭（NH）加至資料包，以形成封包。網路表頭包含了網路資料。例如:網際網路協定（IP）等。
+- 第2層 資料連結層
+   - 資料連結層（Data Link Layer）負責網路尋址、錯誤偵測和改錯。當表頭和表尾被加至資料包時，會形成影格。資料鏈表頭（DLH）是包含了實體位址和錯誤偵測及改錯的方法。資料鏈表尾（DLT）是一串指示資料包末端的字串。例如乙太網、無線區域網路（Wi-Fi）和通用分組無線服務（GPRS）等。
+   - 分為兩個子層：邏輯鏈路控制（logic link control，LLC）子層和介質存取控制（media access control，MAC）子層。
+- 第1層 實體層
+   - 實體層（Physical Layer）在局部區域網路上傳送資料框（frame），它負責管理電腦通訊裝置和網路媒體之間的互通。包括了針腳、電壓、線纜規範、集線器、中繼器、網卡、主機介面卡等。
+
+5. tcp 在哪一层?http 在哪一层?ip 在哪一层?tcp 的三次握手和四次挥手 画图(当场画写 ack 和 seq 的值)?为什么 tcp 要三次握手四次挥手?
